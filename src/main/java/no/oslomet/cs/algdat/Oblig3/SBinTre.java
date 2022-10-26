@@ -118,6 +118,19 @@ public class SBinTre<T> {
 
     public int antall(T verdi) {
         Objects.requireNonNull(verdi, "Null verdier er ikke tilltat");
+        // her skal jeg sette rot verdien
+        Node<T> current = rot;
+        int antall = 0;
+        while (current != null){
+            int compare = comp.compare(verdi, current.verdi);
+            if(compare<0){
+                current = current.venstre;
+            }else{
+                current = current.høyre;
+                antall++;
+            }
+        }
+        return antall;
     }
 
     public void nullstill() {
