@@ -121,15 +121,17 @@ public class SBinTre<T> {
         // her skal jeg sette rot verdien
         Node<T> current = rot;
         int antall = 0;
-        while (current != null){
+        while (current != null) {
             int compare = comp.compare(verdi, current.verdi);
-            if(compare<0){
+         if(compare<0){
                 current = current.venstre;
             }else{
                 current = current.høyre;
-                antall++;
+
             }
+            antall++;
         }
+
         return antall;
     }
 
