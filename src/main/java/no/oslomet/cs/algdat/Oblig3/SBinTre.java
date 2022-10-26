@@ -137,8 +137,7 @@ public class SBinTre<T> {
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) { // kopiert fra kompendia (5.1.7 h)
-       // if(tom()) throw new NoSuchElementException("tomt tabell");
-        //Node<T> p = rot;
+        Objects.requireNonNull("ikke tillat med nulle verdier");
         while (true){
             if(p.venstre != null){
                 p = p.venstre;
@@ -151,11 +150,21 @@ public class SBinTre<T> {
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
+        Objects.requireNonNull("ikke tillat med nulle verdier");
+        Node<T> nestepost = p.forelder;
 
+        if(nestepost == null){
+            return null;
+        }
+        if(nestepost.høyre == p || nestepost.høyre == null){
+            return nestepost;
+        }else {
+            return førstePostorden(nestepost.høyre);
+        }
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
