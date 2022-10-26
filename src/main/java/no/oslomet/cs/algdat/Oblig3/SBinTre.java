@@ -1,10 +1,7 @@
 package no.oslomet.cs.algdat.Oblig3;
 
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class SBinTre<T> {
     private static final class Node<T>   // en indre nodeklasse
@@ -125,7 +122,7 @@ public class SBinTre<T> {
             int compare = comp.compare(verdi, current.verdi);
          if(compare<0){
                 current = current.venstre;
-            }else{
+            }else if(compare > 0){
                 current = current.høyre;
 
             }
@@ -140,7 +137,11 @@ public class SBinTre<T> {
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        if(tom()) throw new NoSuchElementException("tomt tabell");
+        Node<T> p = rot;
+        while (true){
+
+        }
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
