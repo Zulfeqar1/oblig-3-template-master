@@ -162,9 +162,13 @@ public class SBinTre<T> {
 
     public void postorden(Oppgave<? super T> oppgave) {
         Objects.requireNonNull("ikke tillat med nuller");
-        Node<T> p = rot;
+        Node<T>  p = rot;
+        Node<T> første = førstePostorden(p);
 
-
+        while (første != null){
+            oppgave.utførOppgave(første.verdi);
+            første = nestePostorden(første);
+        }
         }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
@@ -172,7 +176,11 @@ public class SBinTre<T> {
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        if(p == null)return;
+
+        postordenRecursive(p.venstre, oppgave);
+        postordenRecursive(p.høyre, oppgave);
+        oppgave.utførOppgave(p.verdi);
 
     }
 
