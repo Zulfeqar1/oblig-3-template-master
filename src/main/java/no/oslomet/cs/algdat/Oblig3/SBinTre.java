@@ -120,13 +120,10 @@ public class SBinTre<T> {
         int antall = 0;
         while (current != null) {
             int compare = comp.compare(verdi, current.verdi);
-         if(compare<0){
-                current = current.venstre;
-            }else if(compare > 0){
-                current = current.høyre;
-
-            }
-            antall++;
+         if(compare == 0){
+             antall++;
+         }
+             current = compare < 0 ? current.venstre : current.høyre;
         }
 
         return antall;
@@ -169,7 +166,6 @@ public class SBinTre<T> {
 
 
         }
-    }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
         postordenRecursive(rot, oppgave);
